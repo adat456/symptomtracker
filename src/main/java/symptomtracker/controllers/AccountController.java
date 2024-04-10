@@ -19,12 +19,12 @@ public class AccountController {
     }
     @PostMapping
     private ResponseEntity<Account> create(@Valid @RequestBody Account a) {
-        return ResponseEntity.ok(accountService.createUpdate(a));
+        return ResponseEntity.ok(accountService.create(a));
     }
 
     @PutMapping
     private ResponseEntity<Account> update(@Valid @RequestBody Account a) {
-        return ResponseEntity.ok(accountService.createUpdate(a));
+        return ResponseEntity.ok(accountService.update(a));
     }
 
     @DeleteMapping("/{accountId}")

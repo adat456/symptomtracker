@@ -8,7 +8,10 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +32,12 @@ public class Feature {
 
     @NotNull(message = "Feature allowable values are required.")
     private List<String> allowableValues;
+
+    @CreationTimestamp
+    private Instant created;
+
+    @UpdateTimestamp
+    private Instant updated;
 
     @ManyToOne
     @JsonBackReference(value = "symptom-feature")
