@@ -19,6 +19,10 @@ public class FeatureService {
     private final SymptomRepo symptomRepo;
     private final FeatureRepo featureRepo;
 
+    public Feature get(Integer featureId) {
+        return featureRepo.findById(featureId).orElseThrow(() -> new EntityNotFoundException("Unable to find feature."));
+    }
+
     public Feature create(CreateFeatureDTO d) throws InvalidAllowableValues {
         Symptom symptom = symptomRepo.findById(d.getSymptomId()).orElseThrow(() -> new EntityNotFoundException("Unable to find symptom."));
         validateAllowableValues(d.getType(), d.getAllowableValues());

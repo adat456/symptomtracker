@@ -7,10 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,11 +19,8 @@ public class Instance {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer instanceId;
 
-    @CreatedDate
-    private Date createdDate;
-
-    @NotNull(message = "Instance must contain data.")
-    private List<String> featureData;
+    @NotNull(message = "Instance data is required.")
+    private List<String> data;
 
     @CreationTimestamp
     private Instant created;
@@ -36,4 +31,13 @@ public class Instance {
     @ManyToOne
     @JsonBackReference(value = "feature-instance")
     private Feature feature;
+
+    @NotNull(message = "Feature ID is required.")
+    private Integer featureId;
+
+    public Instance(List<String> data, Feature feature, Integer featureId) {
+        this.data = data;
+        this.feature = feature;
+        this.featureId = featureId;
+    }
 }

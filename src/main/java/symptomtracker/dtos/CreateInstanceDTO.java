@@ -5,12 +5,14 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @Data
 @RequiredArgsConstructor
 public class CreateInstanceDTO {
-    @Column(columnDefinition = "jsonb")
-    private final String featureData;
+    @NotNull(message = "Instance data is required.")
+    private final List<String> data;
 
-    @NotNull(message = "Symptom ID is required.")
-    private final Integer symptomId;
+    @NotNull(message = "Feature ID is required.")
+    private final Integer featureId;
 }

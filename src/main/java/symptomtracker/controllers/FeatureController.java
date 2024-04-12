@@ -15,6 +15,11 @@ import symptomtracker.services.FeatureService;
 public class FeatureController {
     private final FeatureService featureService;
 
+    @GetMapping("/{featureId}")
+    private ResponseEntity<Feature> get(@PathVariable("featureId") Integer featureId) {
+        return ResponseEntity.ok(featureService.get(featureId));
+    }
+
     @PostMapping
     private ResponseEntity<Feature> create(@RequestBody @Valid CreateFeatureDTO d) throws InvalidAllowableValues {
         return ResponseEntity.ok(featureService.create(d));
